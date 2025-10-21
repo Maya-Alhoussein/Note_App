@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:note_app_final/data/models/note/note.dart' ;
+import 'package:note_app_final/common_imports.dart';
+import 'package:note_app_final/data/models/note/note.dart';
 
 class NoteCard extends StatelessWidget {
   final Note note;
@@ -25,23 +25,18 @@ class NoteCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            note.title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF333333),
-            ),
+          CustomText(
+            text: note.title,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Expanded(
             child: Text(
               note.content,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Color(0xFF555555),
-              ),
-              overflow: TextOverflow.fade, // Fades the text if it overflows
+              style:  TextStyle(fontSize: 16.sp, color: Colors.black38),
+              overflow: TextOverflow.fade,
             ),
           ),
         ],
