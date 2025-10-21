@@ -3,7 +3,7 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:note_app_final/models/note/note.dart';
+import 'package:note_app_final/data/models/note/note.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

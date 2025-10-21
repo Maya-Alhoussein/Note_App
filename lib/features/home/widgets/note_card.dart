@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app_final/models/note/note.dart' ;
+import 'package:note_app_final/data/models/note/note.dart' ;
 
 class NoteCard extends StatelessWidget {
   final Note note;
@@ -14,7 +14,7 @@ class NoteCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             spreadRadius: 1,
             blurRadius: 5,
             offset: const Offset(0, 3),

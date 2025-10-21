@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app_final/models/note/note.dart';
+import 'package:note_app_final/data/models/note/note.dart';
 
 class HomeViewModel extends ChangeNotifier{
   final List<Note> mockNotes = [
