@@ -19,7 +19,7 @@ class NoteAdapter extends TypeAdapter<Note> {
     return Note(
       title: fields[0] as String,
       content: fields[1] as String,
-      colorValue: fields[2] as Color,
+      colorValue: (fields[2] as num).toInt(),
       heightRatio: (fields[3] as num).toDouble(),
     );
   }

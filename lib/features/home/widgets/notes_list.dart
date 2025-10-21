@@ -9,11 +9,24 @@ class NotesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
+    final notes = viewModel.notes;
+
+    if (notes.isEmpty) {
+      ///todo : make emptyWidget
+      return const Center(
+        child: Text(
+          'No notes yet. Tap the "+" to add your first note!',
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
+
     return StaggeredGrid.count(
       crossAxisCount: 2,
       mainAxisSpacing: 12,
       crossAxisSpacing: 12,
-      children: viewModel.mockNotes.map((note) {
+      children: notes.map((note) {
         return StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: note.heightRatio,

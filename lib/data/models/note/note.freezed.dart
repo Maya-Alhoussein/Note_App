@@ -14,8 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Note {
 
-@HiveField(0) String get title;@HiveField(1) String get content;// Store Color as an int (ARGB value)
-@HiveField(2) Color get colorValue;@HiveField(3) double get heightRatio;
+@HiveField(0) String get title;@HiveField(1) String get content;@HiveField(2) int get colorValue;@HiveField(3) double get heightRatio;
 /// Create a copy of Note
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +45,7 @@ abstract mixin class $NoteCopyWith<$Res>  {
   factory $NoteCopyWith(Note value, $Res Function(Note) _then) = _$NoteCopyWithImpl;
 @useResult
 $Res call({
-@HiveField(0) String title,@HiveField(1) String content,@HiveField(2) Color colorValue,@HiveField(3) double heightRatio
+@HiveField(0) String title,@HiveField(1) String content,@HiveField(2) int colorValue,@HiveField(3) double heightRatio
 });
 
 
@@ -68,7 +67,7 @@ class _$NoteCopyWithImpl<$Res>
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,colorValue: null == colorValue ? _self.colorValue : colorValue // ignore: cast_nullable_to_non_nullable
-as Color,heightRatio: null == heightRatio ? _self.heightRatio : heightRatio // ignore: cast_nullable_to_non_nullable
+as int,heightRatio: null == heightRatio ? _self.heightRatio : heightRatio // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }
@@ -154,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  Color colorValue, @HiveField(3)  double heightRatio)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  int colorValue, @HiveField(3)  double heightRatio)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Note() when $default != null:
 return $default(_that.title,_that.content,_that.colorValue,_that.heightRatio);case _:
@@ -175,7 +174,7 @@ return $default(_that.title,_that.content,_that.colorValue,_that.heightRatio);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  Color colorValue, @HiveField(3)  double heightRatio)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  int colorValue, @HiveField(3)  double heightRatio)  $default,) {final _that = this;
 switch (_that) {
 case _Note():
 return $default(_that.title,_that.content,_that.colorValue,_that.heightRatio);case _:
@@ -195,7 +194,7 @@ return $default(_that.title,_that.content,_that.colorValue,_that.heightRatio);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  Color colorValue, @HiveField(3)  double heightRatio)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String title, @HiveField(1)  String content, @HiveField(2)  int colorValue, @HiveField(3)  double heightRatio)?  $default,) {final _that = this;
 switch (_that) {
 case _Note() when $default != null:
 return $default(_that.title,_that.content,_that.colorValue,_that.heightRatio);case _:
@@ -215,8 +214,7 @@ class _Note extends Note {
 
 @override@HiveField(0) final  String title;
 @override@HiveField(1) final  String content;
-// Store Color as an int (ARGB value)
-@override@HiveField(2) final  Color colorValue;
+@override@HiveField(2) final  int colorValue;
 @override@HiveField(3) final  double heightRatio;
 
 /// Create a copy of Note
@@ -249,7 +247,7 @@ abstract mixin class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
   factory _$NoteCopyWith(_Note value, $Res Function(_Note) _then) = __$NoteCopyWithImpl;
 @override @useResult
 $Res call({
-@HiveField(0) String title,@HiveField(1) String content,@HiveField(2) Color colorValue,@HiveField(3) double heightRatio
+@HiveField(0) String title,@HiveField(1) String content,@HiveField(2) int colorValue,@HiveField(3) double heightRatio
 });
 
 
@@ -271,7 +269,7 @@ class __$NoteCopyWithImpl<$Res>
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,colorValue: null == colorValue ? _self.colorValue : colorValue // ignore: cast_nullable_to_non_nullable
-as Color,heightRatio: null == heightRatio ? _self.heightRatio : heightRatio // ignore: cast_nullable_to_non_nullable
+as int,heightRatio: null == heightRatio ? _self.heightRatio : heightRatio // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }

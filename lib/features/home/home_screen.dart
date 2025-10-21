@@ -1,5 +1,6 @@
 import 'package:note_app_final/common_imports.dart';
-import 'package:note_app_final/features/home/home_view_model.dart';
+import 'package:note_app_final/features/add_note/add_note_screen.dart';
+import 'package:note_app_final/features/add_note/add_note_view_model.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,7 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Add your Notes'),
@@ -29,7 +29,15 @@ class HomeScreen extends StatelessWidget {
         child: NotesList(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ChangeNotifierProvider(
+                create: (_) => AddNoteViewModel(),
+                  child: const AddNoteScreen()),
+            ),
+          );
+        },
         backgroundColor: const Color(0xFFE57373), // Red color from screenshot
         shape: const CircleBorder(),
         child: const Icon(Icons.add, color: Colors.white, size: 30),
