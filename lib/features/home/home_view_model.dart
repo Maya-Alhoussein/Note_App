@@ -5,26 +5,18 @@ import 'package:note_app_final/common_imports.dart';
 class HomeViewModel extends ChangeNotifier{
   late Box<Note> _notesBox;
   bool _isInitialized = false;
+  final ValueNotifier<List<Note>> notesNotifier = ValueNotifier([]);
 
   HomeViewModel() {
+    notes;
     _init();
   }
 
   List<Note> get notes {
     if (!_isInitialized) return [];
     final notesList = _notesBox.values.toList();
-    print('HomeViewModel: Getting ${notesList.length} notes');
+    print('HomeViewModel: Getting ${notesNotifier.value} notes');
     return notesList;
-  }
-
-  void refreshNotes() {
-    if (_isInitialized) {
-      // Ensure we have the latest data from Hive
-      _notesBox = Hive.box<Note>('notesBox');
-      print('HomeViewModel: Refreshing notes, current count: ${_notesBox.length}');
-      // Force a refresh by calling notifyListeners
-      notifyListeners();
-    }
   }
 
   Future<void> deleteNote(Note note) async {
@@ -35,6 +27,7 @@ class HomeViewModel extends ChangeNotifier{
         if (noteKey != null) {
           await _notesBox.delete(noteKey);
           print('HomeViewModel: Note deleted successfully');
+          notesNotifier.value = _notesBox.values.toList();
           notifyListeners();
         }
       } catch (e) {
@@ -49,6 +42,8 @@ class HomeViewModel extends ChangeNotifier{
         _notesBox = await Hive.openBox<Note>('notesBox');
       } else {
         _notesBox = Hive.box<Note>('notesBox');
+        notesNotifier.value = _notesBox.values.toList();
+
       }
 
       _isInitialized = true;
@@ -58,7 +53,6 @@ class HomeViewModel extends ChangeNotifier{
       _isInitialized = false;
     }
   }
-
 
   @override
   void dispose() {

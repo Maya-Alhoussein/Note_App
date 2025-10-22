@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:hive_ce/hive.dart';
 import 'package:note_app_final/data/models/note/note.dart';
-import 'package:note_app_final/features/home/home_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:note_app_final/common_imports.dart';
+
+
 
 class AddNoteViewModel extends ChangeNotifier {
   late Box<Note> _notesBox;
@@ -49,24 +48,15 @@ class AddNoteViewModel extends ChangeNotifier {
       return false;
     }
 
-    // Save the note first
     await addNote(
       title: trimmedTitle,
       content: trimmedContent,
       color: _selectedColor,
     );
 
-    // Then notify HomeViewModel to refresh the notes list
-    if (context != null) {
-      print('AddNoteViewModel: Notifying HomeViewModel to refresh');
-      final homeViewModel = context.read<HomeViewModel>();
-      // Add a small delay to ensure Hive has written the data
-      await Future.delayed(Duration(milliseconds: 100));
-      homeViewModel.refreshNotes();
-    }
-
     return true;
   }
+
 
   Future<void> addNote({
     required String title,
@@ -81,7 +71,6 @@ class AddNoteViewModel extends ChangeNotifier {
         heightRatio: 1.0,
       );
       await _notesBox.add(newNote);
-      // Ensure the data is written to disk
       await _notesBox.flush();
       print('AddNoteViewModel: Note saved successfully, box now has ${_notesBox.length} notes');
     } catch (e) {

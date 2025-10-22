@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/note_card.dart';
 import 'package:provider/provider.dart';
 class NotesList extends StatelessWidget {
-  const NotesList({super.key});
+  final List<Note> notes;
+  const NotesList({super.key, required this.notes});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<HomeViewModel>();
-    final notes = viewModel.notes;
-
     if (notes.isEmpty) {
       ///todo : make emptyWidget
       return const Center(

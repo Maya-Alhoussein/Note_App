@@ -1,5 +1,4 @@
 import 'package:note_app_final/common_imports.dart';
-import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/add_note_icon.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
@@ -9,7 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HomeViewModel>(context);
+    final HomeViewModel viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: CustomText(text: 'Add your Notes'),
@@ -28,7 +27,12 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child:  SingleChildScrollView(child: NotesList())), 
+        child:  ValueListenableBuilder(
+          valueListenable: viewModel.notesNotifier,
+          builder: (context,notes,_) {
+            return SingleChildScrollView(child: NotesList(notes: notes));
+          }
+        )),
       floatingActionButton: AddNoteIcon(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
