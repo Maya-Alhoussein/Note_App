@@ -1,11 +1,10 @@
 import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/common_imports.dart';
 
-
-
 class AddNoteViewModel extends ChangeNotifier {
   late Box<Note> _notesBox;
   Color _selectedColor = Colors.lightBlue.shade200;
+
   Color get selectedColor => _selectedColor;
 
   final List<Color> availableColors = [
@@ -57,7 +56,6 @@ class AddNoteViewModel extends ChangeNotifier {
     return true;
   }
 
-
   Future<void> addNote({
     required String title,
     required String content,
@@ -72,7 +70,6 @@ class AddNoteViewModel extends ChangeNotifier {
       );
       await _notesBox.add(newNote);
       await _notesBox.flush();
-      print('AddNoteViewModel: Note saved successfully, box now has ${_notesBox.length} notes');
     } catch (e) {
       print('Error saving note: $e');
     }
