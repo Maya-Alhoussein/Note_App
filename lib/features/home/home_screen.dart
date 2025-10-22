@@ -1,6 +1,5 @@
 import 'package:note_app_final/common_imports.dart';
 import 'package:note_app_final/features/add_note/add_note_screen.dart';
-import 'package:note_app_final/features/add_note/add_note_view_model.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,9 +31,7 @@ class HomeScreen extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider(
-                create: (_) => AddNoteViewModel(),
-                  child: const AddNoteScreen()),
+              builder: (context) => const AddNoteScreen(),
             ),
           );
         },

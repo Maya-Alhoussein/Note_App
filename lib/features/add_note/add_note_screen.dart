@@ -20,11 +20,12 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     super.dispose();
   }
 
-  void _saveNoteHandler() {
-    final viewModel = context.watch<AddNoteViewModel>();
-    final success = viewModel.saveNewNote(
+  void _saveNoteHandler() async {
+    final viewModel = context.read<AddNoteViewModel>();
+    final success = await viewModel.saveNewNote(
       title: _titleController.text,
       content: _contentController.text,
+      context: context,
     );
     if (success) {
       Navigator.of(context).pop();
@@ -34,10 +35,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<AddNoteViewModel>();
+    final viewModel = context.watch<AddNoteViewModel>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
