@@ -41,19 +41,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       backgroundColor: Colors.yellow.shade200,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset(
-              'assets/lottie/Notes.json',
-              width: 400.w,
-              height: 400.h,
-              fit: BoxFit.contain,
-              repeat: true,
-              reverse: false,
-              animate: true,
-            ),
-          ],
+        child: Lottie.asset(
+          'assets/lottie/Notes.json',
+          width: 400.w,
+          height: 400.h,
+          fit: BoxFit.contain,
+          repeat: true,
+          reverse: false,
+          animate: true,
         ),
       ),
     );
