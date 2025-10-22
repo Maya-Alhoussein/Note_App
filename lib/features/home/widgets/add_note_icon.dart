@@ -1,5 +1,7 @@
 import 'package:note_app_final/common_imports.dart';
+import 'package:note_app_final/data/repositories/note_repository.dart';
 import 'package:note_app_final/features/add_note/add_note_screen.dart';
+import 'package:note_app_final/features/add_note/add_note_view_model.dart';
 
 class AddNoteIcon extends StatelessWidget {
   const AddNoteIcon({
@@ -15,8 +17,16 @@ class AddNoteIcon extends StatelessWidget {
           isScrollControlled: true,
           useSafeArea: true,
           backgroundColor: Colors.transparent,
-          builder: (BuildContext context) {
-            return const AddNoteScreen();
+          builder: (context) {
+            return Provider<NoteRepository>(
+              create: (_) => NoteRepository(),
+              child: ChangeNotifierProvider(
+                create: (context) => AddNoteViewModel(
+                  Provider.of<NoteRepository>(context, listen: false),
+                ),
+                child: const AddNoteScreen(),
+              ),
+            );
           },
         );
       },

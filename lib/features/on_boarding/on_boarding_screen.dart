@@ -1,5 +1,6 @@
 import 'package:lottie/lottie.dart';
 import 'package:note_app_final/common_imports.dart';
+import 'package:note_app_final/data/repositories/note_repository.dart';
 import 'package:note_app_final/features/home/home_screen.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 
@@ -18,10 +19,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ChangeNotifierProvider(
-              create: (_) => HomeViewModel(),
-              child: const HomeScreen(),
-            ),
+            builder: (context) {
+              return Provider<NoteRepository>(
+                create: (_) => NoteRepository(),
+                child: ChangeNotifierProvider(
+                  create: (context) => HomeViewModel(
+                    Provider.of<NoteRepository>(context, listen: false),
+                  ),
+                  child: const HomeScreen(),
+                ),
+              );
+            },
           ),
         );
       }
@@ -30,21 +38,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.yellow.shade200,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-              Lottie.asset(
-             'assets/lottie/Notes.json', 
-             width: 400.w,
-             height: 400.h,
-             fit: BoxFit.contain,
-             repeat: true, 
-             reverse: false, 
-             animate: true,
-           ),
+            Lottie.asset(
+              'assets/lottie/Notes.json',
+              width: 400.w,
+              height: 400.h,
+              fit: BoxFit.contain,
+              repeat: true,
+              reverse: false,
+              animate: true,
+            ),
           ],
         ),
       ),

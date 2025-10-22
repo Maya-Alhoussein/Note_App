@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/hive_registrar.g.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,5 +18,6 @@ class HiveInitializer {
     Hive
       ..init(path)
       ..registerAdapters();
+    await Hive.openBox<Note>('notesBox');
   }
 }

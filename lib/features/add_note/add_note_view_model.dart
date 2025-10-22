@@ -1,8 +1,9 @@
 import 'package:note_app_final/data/models/note/note.dart';
+import 'package:note_app_final/data/repositories/note_repository.dart';
 import 'package:note_app_final/common_imports.dart';
 
 class AddNoteViewModel extends ChangeNotifier {
-  late Box<Note> _notesBox;
+  final NoteRepository _noteRepository;
   Color _selectedColor = Colors.lightBlue.shade200;
 
   Color get selectedColor => _selectedColor;
@@ -16,17 +17,7 @@ class AddNoteViewModel extends ChangeNotifier {
     Colors.cyan.shade200,
   ];
 
-  AddNoteViewModel() {
-    _initBox();
-  }
-
-  void _initBox() {
-    try {
-      _notesBox = Hive.box<Note>('notesBox');
-    } catch (e) {
-      print('Error accessing notesBox: $e');
-    }
-  }
+  AddNoteViewModel(this._noteRepository);
 
   void selectColor(Color color) {
     if (_selectedColor != color) {
@@ -61,17 +52,12 @@ class AddNoteViewModel extends ChangeNotifier {
     required String content,
     required Color color,
   }) async {
-    try {
-      final newNote = Note.create(
-        title: title,
-        content: content,
-        color: color,
-        heightRatio: 1.0,
-      );
-      await _notesBox.add(newNote);
-      await _notesBox.flush();
-    } catch (e) {
-      print('Error saving note: $e');
-    }
+    final newNote = Note.create(
+      title: title,
+      content: content,
+      color: color,
+      heightRatio: 1.0,
+    );
+    await _noteRepository.addNote(newNote);  // Delegate to repository
   }
 }
