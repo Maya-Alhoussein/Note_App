@@ -1,5 +1,7 @@
 import 'package:note_app_final/common_imports.dart';
-import 'package:note_app_final/features/add_note/add_note_screen.dart';
+import 'package:note_app_final/data/models/note/note.dart';
+import 'package:note_app_final/features/home/home_view_model.dart';
+import 'package:note_app_final/features/home/widgets/add_note_icon.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,9 +9,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add your Notes'),
+        title: CustomText(text: 'Add your Notes'),
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
@@ -25,21 +28,11 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: NotesList(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AddNoteScreen(),
-            ),
-          );
-        },
-        backgroundColor: const Color(0xFFE57373), // Red color from screenshot
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add, color: Colors.white, size: 30),
-      ),
+        child:  SingleChildScrollView(child: NotesList())), 
+      floatingActionButton: AddNoteIcon(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
+
+

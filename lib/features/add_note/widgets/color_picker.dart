@@ -17,16 +17,16 @@ class ColorPickerWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.grey.shade300, width: 1)),
+        border: Border(top: BorderSide(color: Colors.grey.shade300, width: 1.w)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            'Color:',
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+          CustomText(
+            text: 'Color:',
+           fontSize: 16.sp, fontWeight: FontWeight.w500,
           ),
-
+          
           ...availableColors.map((color) {
             return GestureDetector(
               onTap: () => onColorSelected(color),

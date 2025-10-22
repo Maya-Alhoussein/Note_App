@@ -41,7 +41,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('New Note'),
+        title: const CustomText(text: 'New Note'),
         backgroundColor: viewModel.selectedColor,
         elevation: 1,
         actions: [
