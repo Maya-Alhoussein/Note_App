@@ -31,21 +31,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: Colors.yellow.shade200,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ///todo : fix the issue of the lottie animation
               Lottie.asset(
              'assets/lottie/Notes.json', 
-             width: 200.w,
-             height: 200.h,
+             width: 400.w,
+             height: 400.h,
              fit: BoxFit.contain,
              repeat: true, 
              reverse: false, 
              animate: true,
            ),
-          CustomText(text: 'Notes app',fontSize: 50.sp,fontWeight: FontWeight.bold),
           ],
         ),
       ),

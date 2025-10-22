@@ -10,10 +10,14 @@ class AddNoteIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const AddNoteScreen(),
-          ),
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          useSafeArea: true,
+          backgroundColor: Colors.transparent,
+          builder: (BuildContext context) {
+            return const AddNoteScreen();
+          },
         );
       },
       backgroundColor: const Color(0xFFE57373), // Red color from screenshot

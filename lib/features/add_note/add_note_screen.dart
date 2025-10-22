@@ -43,7 +43,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       appBar: AppBar(
         title: const CustomText(text: 'New Note'),
         backgroundColor: viewModel.selectedColor,
-        elevation: 1,
+        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.check, size: 28.w),
@@ -52,42 +52,45 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
           SizedBox(width: 8.w),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        child: Column(
-          children: [
-            // Title Input
-            TextFormField(
-              controller: _titleController,
-              autofocus: true,
-              style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(
-                hintText: 'Title',
-                border: InputBorder.none,
-              ),
-            ),
-
-            SizedBox(height: 10.h),
-            //title Input
-            Expanded(
-              child: TextFormField(
-                controller: _contentController,
-                maxLines: null, // Allows multiline input
-                keyboardType: TextInputType.multiline,
-                style: TextStyle(fontSize: 18.sp, color: Colors.black87),
+      body: Container(
+        color:viewModel.selectedColor,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: Column(
+            children: [
+              // Title Input
+              TextFormField(
+                controller: _titleController,
+                autofocus: true,
+                style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
                 decoration: const InputDecoration(
-                  hintText: 'Start writing your note...',
+                  hintText: 'Title',
                   border: InputBorder.none,
                 ),
               ),
-            ),
 
-            ColorPickerWidget(
-              selectedColor: viewModel.selectedColor,
-              onColorSelected: viewModel.selectColor,
-              availableColors: viewModel.availableColors,
-            ),
-          ],
+              SizedBox(height: 10.h),
+              //title Input
+              Expanded(
+                child: TextFormField(
+                  controller: _contentController,
+                  maxLines: null, // Allows multiline input
+                  keyboardType: TextInputType.multiline,
+                  style: TextStyle(fontSize: 18.sp, color: Colors.black87),
+                  decoration: const InputDecoration(
+                    hintText: 'Start writing your note...',
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+
+              ColorPickerWidget(
+                selectedColor: viewModel.selectedColor,
+                onColorSelected: viewModel.selectColor,
+                availableColors: viewModel.availableColors,
+              ),
+            ],
+          ),
         ),
       ),
     );
