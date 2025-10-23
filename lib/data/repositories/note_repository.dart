@@ -46,6 +46,15 @@ class NoteRepository {
     }
   }
 
+  Future<void> deleteAllNotes() async {
+    try {
+      await _notesBox.clear();
+      await _notesBox.flush();
+    } catch (e) {
+      throw Exception('Failed to delete all notes: $e');
+    }
+  }
+
   // Cleanup
   void dispose() {
     notesNotifier.dispose();

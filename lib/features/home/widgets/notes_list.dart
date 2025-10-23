@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:note_app_final/common_imports.dart';
 import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/note_card.dart';
-import 'package:provider/provider.dart';
+import 'package:note_app_final/features/home/widgets/empty_state_widget.dart';
 class NotesList extends StatelessWidget {
   final List<Note> notes;
   const NotesList({super.key, required this.notes});
@@ -11,14 +11,7 @@ class NotesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (notes.isEmpty) {
-      ///todo : make emptyWidget
-      return const Center(
-        child: Text(
-          'No notes yet. Tap the "+" to add your first note!',
-          style: TextStyle(fontSize: 16, color: Colors.grey),
-          textAlign: TextAlign.center,
-        ),
-      );
+      return const EmptyStateWidget();
     }
 
     return StaggeredGrid.count(

@@ -20,6 +20,10 @@ class HomeViewModel extends ChangeNotifier {
     await _repository.deleteNote(note);
   }
 
+  Future<void> deleteAllNotes() async {
+    await _repository.deleteAllNotes();
+  }
+
   void _init() {
     _listener = () => notifyListeners();
     _repository.notesNotifier.addListener(_listener!);
