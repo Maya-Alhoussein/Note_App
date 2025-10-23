@@ -1,6 +1,8 @@
 import 'package:lottie/lottie.dart';
 import 'package:note_app_final/common_imports.dart';
+import 'package:note_app_final/core/language_provider.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
+import 'package:note_app_final/l10n/app_localizations.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -8,8 +10,10 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final languageProvider = Provider.of<LanguageProvider>(context);
     return Drawer(
-      width: 300.w,
+      width: 330.w,
       backgroundColor: Colors.white,
       child: ListView(
         padding: EdgeInsets.symmetric(vertical: 40.h),
@@ -29,22 +33,36 @@ class HomeDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.home),
-            title: const Text('Home'),
+            title: Text(l10n.home),
             onTap: () {
               Navigator.pop(context);
             },
           ),
           ListTile(
             leading: const Icon(Icons.language),
-            title: const Text('Change Language'),
+            title: Text(
+              l10n.changeLanguage,
+              overflow: TextOverflow.visible,
+              maxLines: 1,
+            ),
+            trailing: Text(
+              languageProvider.currentLanguageName,
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             onTap: () {
               Navigator.pop(context);
+              viewModel.toggleLanguage(context);
             },
           ),
           ListTile(
             leading: const Icon(Icons.restore_from_trash_rounded),
-            title: const Text('Delete All Notes'),
+            title: Text(l10n.deleteAllNotes),
             onTap: () {
+              Navigator.pop(context);
               _showDeleteAllConfirmation(context, viewModel);
             },
           ),
@@ -53,51 +71,28 @@ class HomeDrawer extends StatelessWidget {
     );
   }
 
-  void _showDeleteAllConfirmation(
-    BuildContext context,
-    HomeViewModel viewModel,
-  ) {
+  void _showDeleteAllConfirmation(BuildContext context, HomeViewModel viewModel) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Delete All Notes'),
-          content: const Text(
-            'Are you sure you want to delete all notes? This action cannot be undone.',
-          ),
+          title: Text(l10n.deleteAllNotesTitle),
+          content: Text(l10n.deleteAllNotesMessage),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () async {
-                Navigator.of(context).pop(); 
-                try {
-                  await viewModel.deleteAllNotes();
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('All notes deleted successfully'),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                  }
-                } catch (e) {
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Error deleting notes: $e'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
-                }
+                Navigator.of(context).pop();
+                await viewModel.deleteAllNotesWithFeedback(context);
               },
               style: TextButton.styleFrom(foregroundColor: Colors.red),
-              child: const Text('Delete All'),
+              child: Text(l10n.deleteAll),
             ),
           ],
         );

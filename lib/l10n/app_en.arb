@@ -1,0 +1,17 @@
+{
+  "appTitle": "Add your Notes",
+  "home": "Home",
+  "changeLanguage": "Language",
+  "deleteAllNotes": "Delete All Notes",
+  "deleteAllNotesTitle": "Delete All Notes",
+  "deleteAllNotesMessage": "Are you sure you want to delete all notes? This action cannot be undone.",
+  "cancel": "Cancel",
+  "deleteAll": "Delete All",
+  "deleteNote": "Delete Note",
+  "deleteNoteMessage": "Are you sure you want to delete this note?",
+  "delete": "Delete",
+  "allNotesDeletedSuccessfully": "All notes deleted successfully",
+  "errorDeletingNotes": "Error deleting notes: {error}",
+  "noNotesYet": "No notes yet. Tap the \"+\" to add your first note!",
+  "hello": "Hello 👋"
+}

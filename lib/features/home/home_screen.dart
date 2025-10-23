@@ -3,6 +3,7 @@ import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/add_note_icon.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
 import 'package:note_app_final/features/home/widgets/home_drawer.dart';
+import 'package:note_app_final/l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,9 +11,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeViewModel viewModel = Provider.of<HomeViewModel>(context);
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: 'Add your Notes'),
+        title: CustomText(text: l10n.appTitle),
         centerTitle: true,
         elevation: 0,
         leading: Builder(

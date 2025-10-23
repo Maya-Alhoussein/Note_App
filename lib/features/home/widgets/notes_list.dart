@@ -4,6 +4,7 @@ import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/note_card.dart';
 import 'package:note_app_final/features/home/widgets/empty_state_widget.dart';
+import 'package:note_app_final/l10n/app_localizations.dart';
 class NotesList extends StatelessWidget {
   final List<Note> notes;
   const NotesList({super.key, required this.notes});
@@ -55,20 +56,21 @@ class NotesList extends StatelessWidget {
             ),
             confirmDismiss: (direction) async {
               // Show confirmation dialog
+              final l10n = AppLocalizations.of(context)!;
               return await showDialog<bool>(
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: const Text('Delete Note'),
-                    content: const Text('Are you sure you want to delete this note?'),
+                    title: Text(l10n.deleteNote),
+                    content: Text(l10n.deleteNoteMessage),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(false),
-                        child: const Text('Cancel'),
+                        child: Text(l10n.cancel),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(true),
-                        child: const Text('Delete'),
+                        child: Text(l10n.delete),
                         style: TextButton.styleFrom(foregroundColor: Colors.red),
                       ),
                     ],

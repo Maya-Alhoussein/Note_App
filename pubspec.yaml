@@ -45,6 +45,9 @@ dependencies:
   path_provider: ^2.1.5
   hive_flutter: ^1.1.0
   lottie: ^3.3.2
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +65,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -99,3 +102,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+to rebuild the Language files run the following command:
+flutter pub run build_runner build --delete-conflicting-outputs
