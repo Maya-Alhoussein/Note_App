@@ -1,4 +1,4 @@
-# Note App Final
+# Notie App
 
 A Flutter notes application with internationalization support (English/Arabic) and modern UI design.
 

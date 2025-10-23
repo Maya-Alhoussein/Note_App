@@ -75,12 +75,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             }
-            return ValueListenableBuilder(
-              valueListenable: viewModel.notesNotifier,
-              builder: (context, allNotes, _) {
-                return SingleChildScrollView(child: NotesList(notes: allNotes));
-              },
-            );
+            return SingleChildScrollView(child: NotesList(notes: notes));
           },
         ),
       ),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/data/repositories/note_repository.dart';
 import 'package:note_app_final/core/language_provider.dart';
+import 'package:note_app_final/l10n/app_localizations.dart';
 import 'package:note_app_final/common_imports.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -53,9 +54,10 @@ class HomeViewModel extends ChangeNotifier {
       await deleteAllNotes();
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('All notes deleted successfully'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)?.allNotesDeletedSuccessfully ?? 'All notes deleted successfully'),
             backgroundColor: Colors.green,
+            duration: const Duration(seconds: 2),
           ),
         );
       }
@@ -63,8 +65,9 @@ class HomeViewModel extends ChangeNotifier {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error deleting notes: $e'),
+            content: Text('${AppLocalizations.of(context)?.errorDeletingNotes ?? 'Error deleting notes'}: $e'),
             backgroundColor: Colors.red,
+            duration: const Duration(seconds: 3),
           ),
         );
       }
@@ -94,9 +97,10 @@ class HomeViewModel extends ChangeNotifier {
     if (_searchQuery.isEmpty) {
       _filteredNotes = _repository.getNotes();
     } else {
+      final query = _searchQuery.toLowerCase();
       _filteredNotes = _repository.getNotes().where((note) {
-        return note.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-               note.content.toLowerCase().contains(_searchQuery.toLowerCase());
+        return note.title.toLowerCase().contains(query) ||
+               note.content.toLowerCase().contains(query);
       }).toList();
     }
   }
