@@ -102,6 +102,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
-to rebuild the Language files run the following command:
-flutter pub run build_runner build --delete-conflicting-outputs
