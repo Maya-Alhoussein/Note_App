@@ -15,7 +15,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get changeLanguage => 'تغيير اللغة';
+  String get changeLanguage => ' اللغة';
 
   @override
   String get deleteAllNotes => 'حذف جميع الملاحظات';

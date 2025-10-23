@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get changeLanguage => 'Change Language';
+  String get changeLanguage => 'Language';
 
   @override
   String get deleteAllNotes => 'Delete All Notes';

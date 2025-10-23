@@ -113,7 +113,7 @@ abstract class AppLocalizations {
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Language'**
   String get changeLanguage;
 
   /// No description provided for @deleteAllNotes.
