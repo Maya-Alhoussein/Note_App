@@ -2,7 +2,6 @@ import 'package:lottie/lottie.dart';
 import 'package:note_app_final/common_imports.dart';
 import 'package:note_app_final/core/language_provider.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
-import 'package:note_app_final/l10n/app_localizations.dart';
 
 class HomeDrawer extends StatelessWidget {
   final HomeViewModel viewModel;

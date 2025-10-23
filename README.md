@@ -112,22 +112,91 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 ```
 lib/
-├── core/                    # Core functionality
-│   ├── language_provider.dart
-│   ├── hive_initializer.dart
-│   └── repo_initializer.dart
-├── data/                    # Data layer
-│   ├── models/             # Data models
-│   └── repositories/        # Data repositories
-├── features/               # Feature modules
-│   ├── home/              # Home feature
-│   ├── add_note/          # Add note feature
-│   └── note_details/      # Note details feature
-├── l10n/                  # Localization files
-│   ├── app_en.arb         # English translations
-│   ├── app_ar.arb         # Arabic translations
-│   └── app_localizations.dart
-└── widgets/               # Reusable widgets
+├── 📁 core/                    # Core application functionality
+│   ├── language_provider.dart  # Language state management
+│   ├── repo_initializer.dart   # Repository initialization
+│   └── 📁 storage/             # Storage layer
+│       ├── hive_initializer.dart    # Hive database setup
+│       ├── hive_utils.dart          # Generic Hive utilities
+│       └── hive_registrar.g.dart    # Generated Hive adapters
+│
+├── 📁 data/                    # Data layer (Clean Architecture)
+│   ├── 📁 models/             # Data models
+│   │   └── 📁 note/          # Note entity
+│   │       ├── note.dart           # Note model
+│   │       ├── note.freezed.dart   # Generated Freezed code
+│   │       └── note.g.dart         # Generated Hive adapter
+│   └── 📁 repositories/        # Data repositories
+│       └── note_repository.dart    # Notes data access
+│
+├── 📁 features/               # Feature-based modules
+│   ├── 📁 home/              # Home screen feature
+│   │   ├── home_screen.dart         # Home UI
+│   │   ├── home_view_model.dart     # Home business logic
+│   │   └── 📁 widgets/              # Feature-specific widgets
+│   │       ├── add_note_icon.dart
+│   │       ├── empty_state_widget.dart
+│   │       ├── home_drawer.dart
+│   │       ├── note_card.dart
+│   │       └── notes_list.dart
+│   │
+│   ├── 📁 add_note/          # Add note feature
+│   │   ├── add_note_screen.dart     # Add note UI
+│   │   ├── add_note_view_model.dart # Add note logic
+│   │   └── 📁 widgets/              # Feature-specific widgets
+│   │       └── color_picker.dart
+│   │
+│   ├── 📁 note_details/      # Note details feature
+│   │   └── note_details_screen.dart # Note details UI
+│   │
+│   └── 📁 on_boarding/       # Onboarding feature
+│       └── on_boarding_screen.dart  # Onboarding UI
+│
+├── 📁 shared/                 # Shared application components
+│   └── 📁 widgets/           # Reusable UI components
+│       ├── custom_text.dart      # Custom text widget
+│       └── search_field.dart     # Search input widget
+│
+├── 📁 l10n/                  # Internationalization
+│   ├── app_en.arb           # English translations
+│   ├── app_ar.arb           # Arabic translations
+│   ├── app_localizations.dart    # Generated localizations
+│   ├── app_localizations_en.dart # English generated
+│   └── app_localizations_ar.dart # Arabic generated
+│
+├── common_imports.dart      # Centralized imports
+└── main.dart               # Application entry point
+```
+
+### Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PRESENTATION LAYER                      │
+├─────────────────────────────────────────────────────────────┤
+│  Features/ (UI + ViewModels)                              │
+│  ├── home/ (HomeScreen + HomeViewModel)                   │
+│  ├── add_note/ (AddNoteScreen + AddNoteViewModel)         │
+│  └── note_details/ (NoteDetailsScreen)                    │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      DOMAIN LAYER                          │
+├─────────────────────────────────────────────────────────────┤
+│  Core/ (Business Logic)                                   │
+│  ├── language_provider.dart                               │
+│  └── storage/ (Data Access)                               │
+└─────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       DATA LAYER                           │
+├─────────────────────────────────────────────────────────────┤
+│  Data/ (Models + Repositories)                            │
+│  ├── models/note/ (Note Entity)                           │
+│  └── repositories/ (Data Access Layer)                    │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## Technologies Used

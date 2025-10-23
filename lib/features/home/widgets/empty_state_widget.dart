@@ -1,6 +1,5 @@
 import 'package:lottie/lottie.dart';
 import 'package:note_app_final/common_imports.dart';
-import 'package:note_app_final/l10n/app_localizations.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   const EmptyStateWidget({super.key});

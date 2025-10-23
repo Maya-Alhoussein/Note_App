@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/data/repositories/note_repository.dart';
 import 'package:note_app_final/core/language_provider.dart';
-import 'package:note_app_final/l10n/app_localizations.dart';
 import 'package:note_app_final/common_imports.dart';
 
 class HomeViewModel extends ChangeNotifier {

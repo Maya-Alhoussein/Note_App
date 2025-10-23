@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:note_app_final/hive_registrar.g.dart';
+import 'package:note_app_final/core/storage/hive_registrar.g.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -19,6 +19,5 @@ class HiveInitializer {
     Hive
       ..init(path)
       ..registerAdapters();
-    // Removed direct box opening - handled by repositories
   }
 }

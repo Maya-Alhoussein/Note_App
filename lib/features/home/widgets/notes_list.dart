@@ -70,8 +70,8 @@ class NotesList extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(true),
-                        child: Text(l10n.delete),
                         style: TextButton.styleFrom(foregroundColor: Colors.red),
+                        child: Text(l10n.delete),
                       ),
                     ],
                   );

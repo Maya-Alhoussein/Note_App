@@ -1,66 +1,51 @@
 import 'dart:async';
 import 'package:note_app_final/data/models/note/note.dart';
+import 'package:note_app_final/core/storage/hive_utils.dart';
 import 'package:note_app_final/common_imports.dart';
 
-class NoteRepository {
+class NoteRepository with HiveRepositoryMixin<Note> {
   static const String _notesBoxName = 'notesBox';
-  late Box<Note> _notesBox;
   final ValueNotifier<List<Note>> notesNotifier = ValueNotifier([]);
 
   static final NoteRepository _instance = NoteRepository._internal();
   factory NoteRepository() => _instance;
   NoteRepository._internal();
 
+  @override
+  String get boxName => _notesBoxName;
+
   Future<void> init() async {
-    _notesBox = await Hive.openBox<Note>(_notesBoxName);
-    notesNotifier.value = _notesBox.values.toList();
-    _notesBox.watch().listen((event) {
-      notesNotifier.value = _notesBox.values.toList();
+    await initBox();
+    notesNotifier.value = getAllItems();
+    box.watch().listen((event) {
+      notesNotifier.value = getAllItems();
     });
   }
 
-  List<Note> getNotes() => _notesBox.values.toList();
+  List<Note> getNotes() => getAllItems();
 
   Future<void> addNote(Note note) async {
-    try {
-      await _notesBox.add(note);
-      await _notesBox.flush();
-    } catch (e) {
-      throw Exception('Failed to add note: $e');
-    }
+    await addItem(note);
   }
 
   Future<void> updateNote(int index, Note updatedNote) async {
-    try {
-      await _notesBox.putAt(index, updatedNote);
-    } catch (e) {
-      throw Exception('Failed to update note: $e');
-    }
+    await updateItemAt(index, updatedNote);
   }
 
   Future<void> deleteNote(Note note) async {
-    try {
-      final index = _notesBox.values.toList().indexOf(note);
-      if (index != -1) {
-        await _notesBox.deleteAt(index);
-        await _notesBox.flush();
-      }
-    } catch (e) {
-      throw Exception('Failed to delete note: $e');
+    final index = getAllItems().indexOf(note);
+    if (index != -1) {
+      await deleteItemAt(index);
     }
   }
 
   Future<void> deleteAllNotes() async {
-    try {
-      await _notesBox.clear();
-      await _notesBox.flush();
-    } catch (e) {
-      throw Exception('Failed to delete all notes: $e');
-    }
+    await clearAllItems();
   }
 
   // Cleanup
   void dispose() {
     notesNotifier.dispose();
+    closeBox();
   }
 }

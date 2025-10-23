@@ -3,8 +3,7 @@ import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/add_note_icon.dart';
 import 'package:note_app_final/features/home/widgets/notes_list.dart';
 import 'package:note_app_final/features/home/widgets/home_drawer.dart';
-import 'package:note_app_final/widgets/search_field.dart';
-import 'package:note_app_final/l10n/app_localizations.dart';
+import 'package:note_app_final/shared/widgets/search_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
