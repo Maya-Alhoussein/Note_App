@@ -13,5 +13,8 @@
   "allNotesDeletedSuccessfully": "All notes deleted successfully",
   "errorDeletingNotes": "Error deleting notes: {error}",
   "noNotesYet": "No notes yet. Tap the \"+\" to add your first note!",
-  "hello": "Hello 👋"
+  "hello": "Hello 👋",
+  "searchNotes": "Search notes...",
+  "noSearchResults": "No notes found matching your search",
+  "searchHint": "Search in notes..."
 }

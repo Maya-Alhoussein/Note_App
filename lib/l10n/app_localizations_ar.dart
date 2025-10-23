@@ -56,4 +56,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hello => 'مرحباً 👋';
+
+  @override
+  String get searchNotes => 'البحث في الملاحظات...';
+
+  @override
+  String get noSearchResults => 'لم يتم العثور على ملاحظات تطابق بحثك';
+
+  @override
+  String get searchHint => 'ابحث في الملاحظات...';
 }

@@ -7,8 +7,18 @@ import 'package:note_app_final/common_imports.dart';
 class HomeViewModel extends ChangeNotifier {
   final NoteRepository _repository;
   VoidCallback? _listener;
+  
+  // Search functionality
+  String _searchQuery = '';
+  bool _isSearching = false;
+  List<Note> _filteredNotes = [];
 
   ValueNotifier<List<Note>> get notesNotifier => _repository.notesNotifier;
+  
+  // Search getters
+  String get searchQuery => _searchQuery;
+  bool get isSearching => _isSearching;
+  List<Note> get filteredNotes => _isSearching ? _filteredNotes : _repository.getNotes();
 
 
   HomeViewModel(this._repository) {
@@ -58,6 +68,36 @@ class HomeViewModel extends ChangeNotifier {
           ),
         );
       }
+    }
+  }
+
+  // Search methods
+  void startSearch() {
+    _isSearching = true;
+    notifyListeners();
+  }
+
+  void stopSearch() {
+    _isSearching = false;
+    _searchQuery = '';
+    _filteredNotes = [];
+    notifyListeners();
+  }
+
+  void updateSearchQuery(String query) {
+    _searchQuery = query;
+    _filterNotes();
+    notifyListeners();
+  }
+
+  void _filterNotes() {
+    if (_searchQuery.isEmpty) {
+      _filteredNotes = _repository.getNotes();
+    } else {
+      _filteredNotes = _repository.getNotes().where((note) {
+        return note.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+               note.content.toLowerCase().contains(_searchQuery.toLowerCase());
+      }).toList();
     }
   }
 

@@ -56,4 +56,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hello => 'Hello 👋';
+
+  @override
+  String get searchNotes => 'Search notes...';
+
+  @override
+  String get noSearchResults => 'No notes found matching your search';
+
+  @override
+  String get searchHint => 'Search in notes...';
 }

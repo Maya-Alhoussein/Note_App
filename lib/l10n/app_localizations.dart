@@ -187,6 +187,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello 👋'**
   String get hello;
+
+  /// No description provided for @searchNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Search notes...'**
+  String get searchNotes;
+
+  /// No description provided for @noSearchResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes found matching your search'**
+  String get noSearchResults;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search in notes...'**
+  String get searchHint;
 }
 
 class _AppLocalizationsDelegate
