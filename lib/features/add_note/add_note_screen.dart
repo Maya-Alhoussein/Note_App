@@ -27,6 +27,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       content: _contentController.text,
       context: context,
     );
+    if (!mounted) return;
+    
     if (success) {
       Navigator.of(context).pop();
     } else {

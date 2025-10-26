@@ -4,7 +4,7 @@ import 'package:note_app_final/data/models/note/note.dart';
 import 'package:note_app_final/features/home/home_view_model.dart';
 import 'package:note_app_final/features/home/widgets/note_card.dart';
 import 'package:note_app_final/features/home/widgets/empty_state_widget.dart';
-import 'package:note_app_final/l10n/app_localizations.dart';
+
 class NotesList extends StatelessWidget {
   final List<Note> notes;
   const NotesList({super.key, required this.notes});

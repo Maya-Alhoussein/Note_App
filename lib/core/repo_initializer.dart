@@ -1,4 +1,4 @@
-import '../data/repositories/note_repository.dart';
+import 'package:note_app_final/data/repositories/note_repository.dart';
 
 class RepositoryInitializer {
   static Future<NoteRepository> initialize() async {

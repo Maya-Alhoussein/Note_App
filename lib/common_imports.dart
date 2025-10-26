@@ -4,4 +4,7 @@ export 'package:provider/provider.dart';
 export 'package:note_app_final/shared/widgets/custom_text.dart';
 export 'package:hive_ce/hive.dart';
 export 'package:note_app_final/l10n/app_localizations.dart';
-
+export 'package:note_app_final/core/repo_initializer.dart';
+export 'package:note_app_final/core/storage/hive_initializer.dart';
+export 'package:note_app_final/core/storage/hive_utils.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';

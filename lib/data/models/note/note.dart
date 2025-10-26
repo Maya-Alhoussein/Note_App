@@ -35,7 +35,7 @@ abstract class Note with _$Note {
     return Note(
       title: title,
       content: content,
-      colorValue: color.value,
+      colorValue: color.toARGB32(),
       heightRatio: heightRatio,
     );
   }

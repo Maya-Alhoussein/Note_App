@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:note_app_final/data/models/note/note.dart';
-import 'package:note_app_final/core/storage/hive_utils.dart';
 import 'package:note_app_final/common_imports.dart';
 
 class NoteRepository with HiveRepositoryMixin<Note> {
